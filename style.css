@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +16,10 @@
     color: #e0e0e0;
   }
   
-
   .container {
+    position: relative;
     width: 400px;
+    height: 550px; /* ✅ fixed height to avoid size change */
     background: rgba(15, 20, 30, 0.6);
     border-radius: 20px;
     padding: 28px;
@@ -27,9 +27,10 @@
     box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);
     border: 1px solid rgba(0, 255, 255, 0.1);
     transition: all 0.3s ease;
+    overflow: hidden;
   }
   
-
+  /* ---------- SEARCH BOX ---------- */
   .search-box {
     width: 100%;
     display: flex;
@@ -76,14 +77,21 @@
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
   }
   
-
+  /* ---------- WEATHER BODY ---------- */
+  .weather-body,
+  .location_not_found {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
   .weather-body {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-block: 20px;
-    transition: 0.3s ease;
   }
   
   .weather-body img {
@@ -117,16 +125,19 @@
     color: #aad8ff;
   }
   
-
   .weather_details {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     margin-top: 30px;
+    padding: 0 16px 20px; 
     color: #00eaff;
+    box-sizing: border-box;
   }
   
-  .humidity, .wind {
+  .humidity,
+  .wind {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -150,15 +161,15 @@
     text-transform: capitalize;
   }
   
-
+  /* ---------- ERROR STATE ---------- */
   .location_not_found {
-    width: 100%;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
   }
   
   .location_not_found h1 {
@@ -174,23 +185,7 @@
     filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.4));
   }
   
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .weather-body,
-  .location_not_found {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
+  /* ---------- CONTAINER HOVER ---------- */
   .container:hover {
     box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
     transform: translateY(-3px);
